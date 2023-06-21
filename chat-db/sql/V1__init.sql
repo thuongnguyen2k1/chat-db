@@ -1,4 +1,4 @@
-CREATE TABLE user(
+CREATE TABLE users(
     id SERIAL PRIMARY KEY,
     full_name text
 );
@@ -21,7 +21,7 @@ CREATE TABLE chatroom(
 
 CREATE TABLE userchatroom(
     user_id INTEGER,
-    FOREIGN KEY(user_id) REFERENCES user(id),
+    FOREIGN KEY(user_id) REFERENCES users(id),
     room_id uuid,
     FOREIGN KEY(user_id) REFERENCES chatroom(room_id),
     PRIMARY KEY(user_id, room_id)
