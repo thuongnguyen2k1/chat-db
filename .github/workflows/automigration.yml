@@ -1,0 +1,18 @@
+name: Auto-migration
+on:
+  push:
+    branches:
+      - main
+jobs:
+  migrate-chat-db:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: joshuaavalon/flyway-action@v3.0.0
+        with:
+          url: ${{ secrets.CHAT_URL }}
+          user: ${{ secrets.USER_NAME }}
+          password: ${{ secrets.PASSWORD }}
+          locations: filesystem:./chat-db/sql
+      - run: echo 'testing'
+
