@@ -31,6 +31,6 @@ CREATE TABLE userchatroom(
     user_id INTEGER,
     FOREIGN KEY(user_id) REFERENCES users(id),
     room_id uuid,
-    FOREIGN KEY(user_id) REFERENCES chatroom(room_id),
+    FOREIGN KEY(room_id) REFERENCES chatroom(room_id),
     PRIMARY KEY(user_id, room_id)
 );
