@@ -13,12 +13,18 @@ CREATE TABLE chatroom(
     room_name text
 );
 
-CREATE TABLE chatroom(
-    room_id uuid DEFAULT uuid_generate_v4() PRIMARY KEY,
-    type text,
+CREATE TABLE chatmessage(
+    message_id uuid DEFAULT uuid_generate_v4() PRIMARY KEY,
+    room_id uuid,
+    FOREIGN KEY(room_id) REFERENCES chatroom(room_id),
+    written_by INTEGER,
+    FOREIGN KEY(written_by) REFERENCES users(id),
+    message text,
+    message_type text,
     created_at timestamp without time zone default (now() at time zone 'utc'),
     updated_at timestamp without time zone,
-    room_name text
+    deleted_at timestamp without time zone,
+    reply_message_id uuid
 );
 
 CREATE TABLE userchatroom(
